@@ -8,7 +8,7 @@ class TaskFilter
     case filter
     when "overdue"
       overdue
-    when "due_today"
+    when "today"
       due_today
     when "assigned_to_me"
       assigned_to_me
@@ -22,18 +22,20 @@ class TaskFilter
   private
 
   def overdue
+    today = Date.current
     @tasks.select do |task|
       next false unless task["due_date"]
-      due_date = Time.at(task["due_date"].to_i / 1000)
-      due_date < Time.now
+      due_date = Time.zone.at(task["due_date"].to_i / 1000).to_date
+      due_date < today
     end
   end
 
   def due_today
+    today = Date.current
     @tasks.select do |task|
       next false unless task["due_date"]
-      due_date = Time.at(task["due_date"].to_i / 1000)
-      due_date.to_date == Date.today
+      due_date = Time.zone.at(task["due_date"].to_i / 1000).to_date
+      due_date == today
     end
   end
 

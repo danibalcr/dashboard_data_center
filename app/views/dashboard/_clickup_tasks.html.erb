@@ -1,0 +1,11 @@
+<div
+  style="display:flex;height: 600px; flex-direction: column;background-color: #fefefe; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.20);"
+>
+  <%= render "components/clickup_tasks/header_filters" %>
+
+  <div style="flex: 1; overflow-y: auto; padding-inline: 20px;">
+    <% @tasks.each do |task| %>
+      <%= render "components/clickup_tasks/card_task", task: task %>
+    <% end %>
+  </div>
+</div>

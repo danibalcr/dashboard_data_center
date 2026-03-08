@@ -1,0 +1,25 @@
+<div
+  style="display: flex; align-items: center; background-color: #1656b0; color: white;"
+>
+  <div style="flex: 1; margin-left: 4vw;">
+    <h1>Dashboard</h1>
+  </div>
+
+  <div
+    style="flex: 1; justify-content: flex-end; display: flex; align-items: center; margin-right: 3vw;"
+  >
+    <h3>Welcome, <%= @user ? @user["username"] : "Guest" %>!</h3>
+  </div>
+</div>
+
+<div style="display: flex; gap: 20px; padding: 20px;">
+  <div style="flex: 1;"><%= render "clickup_tasks" %></div>
+
+  <div style="flex: 1;"><%= render "stripe_payments" %></div>
+</div>
+
+<% if @error %>
+  <p style="color: red; border: 2px solid #ccc; padding: 10px;">
+    Error fetching: <%= @error %>
+  </p>
+<% end %>

@@ -1,0 +1,21 @@
+<div
+  style="border-bottom: 1px solid #ccc; padding: 10px; background-color: #fff;"
+>
+  <h3><%= task["name"] %></h3>
+
+  <p style="color: <%= task["status"]["color"] %>;">
+    Status: <%= task["status"]["status"] %>
+  </p>
+
+  <p>
+    Due Date:
+    <%= task["due_date"] ? Time.at(task["due_date"].to_i / 1000).strftime("%B %d, %Y") : "Empty" %>
+  </p>
+
+  <p>
+    Assignees:
+    <%= task['assignees'].present? ?
+        task["assignees"].map { |a| a["username"] }.join(", ") :
+        "No assignees" %>
+  </p>
+</div>
