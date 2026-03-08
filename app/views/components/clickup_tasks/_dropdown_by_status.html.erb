@@ -1,0 +1,57 @@
+<div data-controller="dropdown" class="dropdown">
+  <button
+    data-action="click->dropdown#toggle"
+    class="dropdown-button <%= 'filter-btn-active' if params[:filter] == 'by_status' %>"
+  >
+    By Status ▼
+  </button>
+
+  <div data-dropdown-target="menu" class="dropdown-menu hidden">
+    <% @statuses.each do |status| %>
+      <%= link_to status['status'].upcase,
+        root_path(filter: "by_status", status: status['status']),
+        class: "dropdown-item #{'status-item-active' if params[:status] == status['status']}" %>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-button {
+    padding: 10px;
+    border-radius: 5px;
+    background: #eef3f6;
+    color: #333;
+    border: none;
+    cursor: pointer;
+  }
+  .dropdown-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  .dropdown-item {
+    display: block;
+    padding:8px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+  }
+  .dropdown-item:hover {
+    background-color: #f2f2f2;
+  }
+  .hidden {
+    display: none;
+  }
+  .status-item-active {
+    background-color: #f2f2f2;
+  }
+  .filter-btn-active {
+    background-color: #124e9f;
+    color: white;
+  }
+</style>

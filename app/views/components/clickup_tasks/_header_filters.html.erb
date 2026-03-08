@@ -1,0 +1,36 @@
+<div class="filters-bar">
+  <%= link_to "All", filter_tasks_path(filter: "all"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'all'}" %>
+
+  <%= link_to "Overdue", filter_tasks_path(filter: "overdue"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'overdue'}" %>
+
+  <%= link_to "Today", filter_tasks_path(filter: "today"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'today'}" %>
+
+  <%= link_to "Assigned to Me", filter_tasks_path(filter: "assigned_to_me"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'assigned_to_me'}" %>
+
+  <%= render "components/clickup_tasks/dropdown_by_status" %>
+</div>
+
+<style>
+  .filters-bar {
+    height: 40px;
+    display: flex;
+    align-items:center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .filter-btn {
+    text-align: center;
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #eef3f6;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .filter-btn-active {
+    background-color: #124e9f; color: white;
+  }
+</style>
