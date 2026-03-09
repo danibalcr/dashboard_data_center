@@ -29,14 +29,16 @@
 
     <div class="overview-stats">
       <div class="stat-item stat-sutil">
-        <span class="stat-number"><%= @payment_summary[:total_revenue] %></span>
+        <span class="stat-number">
+          <%= @payment_summary&.dig(:total_revenue) || "$0.00" %>
+        </span>
       </div>
 
       <div class="divider"></div>
 
       <div class="stat-item">
         <span class="stat-number stat-blue">
-          <%= @payment_summary[:transactions] %>
+          <%= @payment_summary&.dig(:transactions) || 0 %>
         </span>
 
         <span class="stat-label">Transactions</span>
@@ -46,7 +48,7 @@
 
       <div class="stat-item">
         <span class="stat-number stat-blue">
-          <%= @payment_summary[:avg_transaction] %>
+          <%= @payment_summary&.dig(:avg_transaction) || "$0.00" %>
         </span>
       </div>
     </div>

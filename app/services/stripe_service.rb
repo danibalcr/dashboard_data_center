@@ -4,8 +4,9 @@ class StripeService
   def get_payments(start_date, end_date, status, limit = 10)
     payments = Stripe::PaymentIntent.list(limit: limit).data
 
-    start_date = Date.parse(start_date) rescue nil if start_date.present?
-    end_date   = Date.parse(end_date) rescue nil if end_date.present?
+    start_date = parse_date(start_date)
+    end_date   = parse_date(end_date)
+
 
     filtered = filter_payments(payments, start_date, end_date, status)
 
@@ -20,6 +21,13 @@ class StripeService
   end
 
   private
+
+  def parse_date(date)
+    return nil if date.blank?
+    Date.parse(date)
+  rescue ArgumentError
+    nil
+  end
 
   def filter_payments(payments, start_date, end_date, status)
     payments.select do |payment|
