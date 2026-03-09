@@ -1,0 +1,94 @@
+<div class="container payments-container">
+  <div class="payments-header">
+    <%= render 'components/stripe_payments/header_filters_transaction' %>
+  </div>
+
+  <div class="payments-list">
+    <%= render 'components/stripe_payments/list_of_transactions' %>
+  </div>
+</div>
+
+<style>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.payments-container {
+  height: 65vh;
+}
+
+.summary {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.payments-header {
+  border-bottom: 1px solid #eee;
+}
+
+.payments-title {
+  padding: 20px 20px 10px 20px;
+  margin: 0;
+}
+
+.payments-filters {
+  display: flex;
+  gap: 12px;
+  padding: 8px 20px 15px 20px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.dropdown-group select {
+  width: 150px;
+}
+
+.filter-group label {
+  margin-bottom: 3px;
+  color: #555;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filter-button {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1656b0;
+  color: white;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: #13489a;
+}
+
+.date-range-info {
+  padding: 0 20px 15px 20px;
+  font-size: 13px;
+  color: #666;
+}
+
+.payments-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+</style>

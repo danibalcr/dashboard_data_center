@@ -1,0 +1,95 @@
+<% if @payments.present? %>
+  <% @payments.each do |payment| %>
+    <div class="payment-item">
+      <div class="payment-left">
+        <div class="payment-amount">
+          <%= payment[:amount] %>
+          <%= payment[:currency] %>
+        </div>
+
+        <div class="payment-description">
+          <%= payment[:description] || "No description" %>
+        </div>
+      </div>
+
+      <div class="payment-right">
+        <span class="payment-status status-<%= payment[:status].downcase %> status-default">
+          <%= payment[:status] %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="payment-empty">
+    No transactions found for the selected filters.
+  </div>
+<% end %>
+
+<style>
+  .payment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .payment-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .payment-amount {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .payment-description {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .payment-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .payment-status {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .status-succeeded {
+    background: #e6f4ea!important;
+    color: #2e7d32!important;
+  }
+
+  .status-pending {
+    background: #fce8d5!important;
+    color: #b45309!important;
+  }
+
+  .status-canceled, .status-failed {
+    background: #fde2e2!important;
+    color: #c0392b!important;
+  }
+
+  .status-default {
+    background: #eef2f7;
+    color: #6b7280;
+  }
+
+  .payment-item:hover {
+    background-color: #f7f9fc;
+  }
+
+  .payment-empty {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    margin-top: 30px;
+  }
+</style>

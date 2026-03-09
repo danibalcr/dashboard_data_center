@@ -1,11 +1,43 @@
-<div
-  style="display:flex;height: 600px; flex-direction: column;background-color: #fefefe; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.20);"
->
+<div class="container tasks-container">
   <%= render "components/clickup_tasks/header_filters" %>
 
-  <div style="flex: 1; overflow-y: auto; padding-inline: 20px;">
-    <% @tasks.each do |task| %>
-      <%= render "components/clickup_tasks/card_task", task: task %>
+  <div class="tasks-list">
+    <% if @tasks.any? %>
+      <% @tasks.each do |task| %>
+        <%= render "components/clickup_tasks/card_task", task: task %>
+      <% end %>
+    <% else %>
+      <div class="tasks-empty">
+        No tasks found for the selected filters.
+      </div>
     <% end %>
   </div>
 </div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .tasks-container {
+    height: 65vh;
+  }
+  .overview-container {
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .tasks-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-inline: 20px;
+  }
+  .tasks-empty {
+    padding: 30px;
+    text-align: center;
+    color: #777;
+  }
+</style>

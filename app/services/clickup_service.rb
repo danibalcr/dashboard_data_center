@@ -1,7 +1,7 @@
 class ClickupService
   def initialize
-    @api_token = Config::CLICKUP_API_TOKEN
-    @base_url = Config::CLICKUP_API_URL
+    @api_token = Config::Clickup::API_TOKEN
+    @base_url = Config::Clickup::API_URL
   end
 
   def get_statuses_for_list(list_id)

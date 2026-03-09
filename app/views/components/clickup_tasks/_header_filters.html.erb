@@ -1,11 +1,11 @@
 <div class="filters-bar">
-  <%= link_to "All", filter_tasks_path(filter: "all"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'all'}" %>
+  <%= link_to "All", root_path(merged_params({ task_filter: "all" })), class: "filter-btn #{'filter-btn-active' if @task_filter == 'all'}" %>
 
-  <%= link_to "Overdue", filter_tasks_path(filter: "overdue"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'overdue'}" %>
+  <%= link_to "Overdue", root_path(merged_params({ task_filter: "overdue" })), class: "filter-btn #{'filter-btn-active' if @task_filter == 'overdue'}" %>
 
-  <%= link_to "Today", filter_tasks_path(filter: "today"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'today'}" %>
+  <%= link_to "Today", root_path(merged_params({ task_filter: "today" })), class: "filter-btn #{'filter-btn-active' if @task_filter == 'today'}" %>
 
-  <%= link_to "Assigned to Me", filter_tasks_path(filter: "assigned_to_me"), class: "filter-btn #{'filter-btn-active' if params[:filter] == 'assigned_to_me'}" %>
+  <%= link_to "Assigned to Me", root_path(merged_params({ task_filter: "assigned_to_me" })), class: "filter-btn #{'filter-btn-active' if @task_filter == 'assigned_to_me'}" %>
 
   <%= render "components/clickup_tasks/dropdown_by_status" %>
 </div>

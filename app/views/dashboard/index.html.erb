@@ -1,25 +1,75 @@
-<div
-  style="display: flex; align-items: center; background-color: #1656b0; color: white;"
->
-  <div style="flex: 1; margin-left: 4vw;">
-    <h1>Dashboard</h1>
+<div class="dashboard-header">
+  <div class="dashboard-title">
+    <h1>Dashboard Data Center</h1>
   </div>
 
-  <div
-    style="flex: 1; justify-content: flex-end; display: flex; align-items: center; margin-right: 3vw;"
-  >
+  <div class="dashboard-user">
     <h3>Welcome, <%= @user ? @user["username"] : "Guest" %>!</h3>
   </div>
 </div>
 
-<div style="display: flex; gap: 20px; padding: 20px;">
-  <div style="flex: 1;"><%= render "clickup_tasks" %></div>
+<%= render "header_overview" %>
 
-  <div style="flex: 1;"><%= render "stripe_payments" %></div>
+<div class="dashboard-content">
+  <div class="dashboard-panel"><%= render "clickup_tasks" %></div>
+
+  <div class="dashboard-panel"><%= render "stripe_payments" %></div>
 </div>
 
 <% if @error %>
-  <p style="color: red; border: 2px solid #ccc; padding: 10px;">
-    Error fetching: <%= @error %>
-  </p>
+  <div class="alert-error">
+    <strong>⚠ Error fetching data</strong>
+    <p><%= @error %></p>
+  </div>
 <% end %>
+
+<style>
+  /* HEADER */
+  .dashboard-header {
+    display: flex; align-items: center;
+    background-color: #1656b0;
+    color: white;
+    padding: 0px 4vw;
+  }
+  .dashboard-title {
+    flex: 1;
+  }
+  .dashboard-user {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* MAIN LAYOUT */
+  .dashboard-content {
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-wrap: wrap;
+  }
+  .dashboard-panel {
+    flex: 1 1 500px;
+  }
+
+  /* ERROR ALERT */
+  .alert-error {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    z-index: 1000;
+    padding: 10px 16px 4px 16px;
+    border-radius: 6px;
+    border: 1px solid #f5c2c7;
+    background-color: #fdecea;
+    color: #842029;
+    width: 600px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+  .alert-error strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+</style>

@@ -1,21 +1,100 @@
-<div
-  style="border-bottom: 1px solid #ccc; padding: 10px; background-color: #fff;"
->
-  <h3><%= task["name"] %></h3>
+<div class="task-item">
+  <div class="task-left">
+    <div class="task-info">
+      <div class="task-title"><%= task["name"] %></div>
 
-  <p style="color: <%= task["status"]["color"] %>;">
-    Status: <%= task["status"]["status"] %>
-  </p>
+      <div class="task-date">
+        Due:
+        <%= task["due_date"] ?
+          Time.zone.at(task["due_date"].to_i / 1000).strftime("%B %d, %Y") :
+          "Empty" %>
+      </div>
+    </div>
+  </div>
 
-  <p>
-    Due Date:
-    <%= task["due_date"] ? Time.at(task["due_date"].to_i / 1000).strftime("%B %d, %Y") : "Empty" %>
-  </p>
+  <div class="task-center">
+    <span
+      class="task-status"
+      style="background-color: <%= task["status"]["color"] %>20; color: <%= task["status"]["color"] %>;"
+    >
+      <%= task["status"]["status"].humanize %>
+    </span>
+  </div>
 
-  <p>
-    Assignees:
-    <%= task['assignees'].present? ?
-        task["assignees"].map { |a| a["username"] }.join(", ") :
-        "No assignees" %>
-  </p>
+  <div class="task-right">
+    <% if task["assignees"].present? %>
+      <span class="task-user">
+        <%= task["assignees"].map { |a| a["username"] }.join(", ") %>
+      </span>
+    <% else %>
+      <span class="task-user">No assignees</span>
+    <% end %>
+  </div>
 </div>
+
+<style>
+  .task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .task-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .task-dot {
+    width: 6px;
+    height: 6px;
+    background: #666;
+    border-radius: 50%;
+  }
+
+  .task-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task-title {
+    font-weight: 600;
+    color: #2c3e50;
+    width: 25vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .task-date {
+    font-size: 13px;
+    color: #777;
+  }
+
+  .task-center {
+    flex: 1;
+    text-align: end;
+    margin-right: 5px;
+    width: 5px;
+  }
+
+  .task-status {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .task-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .task-user {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+</style>

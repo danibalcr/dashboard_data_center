@@ -11,5 +11,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
-  get "/tasks/:filter", to: "dashboard#index", as: :filter_tasks
 end

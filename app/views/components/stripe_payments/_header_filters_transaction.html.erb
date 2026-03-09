@@ -1,0 +1,21 @@
+<%= form_with url: root_path,
+              method: :get,
+              local: true,
+              class: "payments-filters" do %>
+  <%= hidden_field_tag :task_filter, params[:task_filter] %>
+  <%= hidden_field_tag :task_status, params[:task_status] %>
+
+  <div class="filter-group">
+    <label>From</label>
+    <%= date_field_tag :payment_start_date, params[:payment_start_date], autocomplete: "off" %>
+  </div>
+
+  <div class="filter-group">
+    <label>To</label>
+    <%= date_field_tag :payment_end_date, params[:payment_end_date], autocomplete: "off" %>
+  </div>
+
+  <%= render "components/stripe_payments/dropdown_by_payments" %>
+
+  <button type="submit" class="filter-button">Apply</button>
+<% end %>

@@ -1,0 +1,117 @@
+<div class="overview-container">
+  <div class="overview-card">
+    <h3 class="overview-title">Tasks Overview</h3>
+
+    <div class="overview-stats">
+      <div class="stat-item">
+        <span class="stat-number stat-red"><%= @overdue_count %></span>
+        <span class="stat-label">Overdue</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <span class="stat-number stat-blue"><%= @today_count %></span>
+        <span class="stat-label">Due Today</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <span class="stat-number stat-sutil"><%= @total_count %></span>
+        <span class="stat-label">Total Tasks</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <h3 class="overview-title">Revenue Summary</h3>
+
+    <div class="overview-stats">
+      <div class="stat-item stat-sutil">
+        <span class="stat-number"><%= @payment_summary[:total_revenue] %></span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <span class="stat-number stat-blue">
+          <%= @payment_summary[:transactions] %>
+        </span>
+
+        <span class="stat-label">Transactions</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <span class="stat-number stat-blue">
+          <%= @payment_summary[:avg_transaction] %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .overview-container {
+    display: flex;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+
+  .overview-card {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .overview-title {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #2c3e50;
+  }
+
+  .overview-stats {
+    display: flex;
+    align-items: center;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-number {
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .stat-label {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .stat-red {
+    color: #e74c3c;
+  }
+
+  .stat-blue {
+    color: #2c6ed5;
+  }
+  .stat-sutil {
+    color: #666;
+  }
+
+  .divider {
+    width: 1px;
+    height: 30px;
+    background: #ddd;
+    margin: 0 20px;
+  }
+</style>

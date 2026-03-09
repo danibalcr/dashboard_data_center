@@ -1,0 +1,22 @@
+<div class="filter-group dropdown-group">
+  <label>Status</label>
+
+  <%= select_tag :payment_status,
+    options_for_select(
+      [
+        ["All", ""],
+        ["Canceled", "canceled"],
+        ["Succeeded", "succeeded"],
+        ["Pending", "pending"],
+        ["Processing", "processing"],
+        ["Failed", "failed"],
+        ["In Transit", "in_transit"],
+        ["Paid", "paid"],
+        ["Requires Capture", "requires_capture"],
+        ["Requires Payment Method", "requires_payment_method"],
+        ["Requires Confirmation", "requires_confirmation"],
+        ["Requires Action", "requires_action"]
+      ],
+      params[:payment_status]
+    ) %>
+</div>
